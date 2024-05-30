@@ -5,6 +5,8 @@ import arc.files.*;
 import arc.func.*;
 import arc.util.*;
 import arc.util.serialization.*;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import mindustry.*;
 import mindustry.core.*;
 import mindustry.gen.*;
@@ -171,7 +173,7 @@ public class BeControl{
     private void download(String furl, Fi dest, Intc length, Floatc progressor, Boolp canceled, Runnable done, Cons<Throwable> error){
         mainExecutor.submit(() -> {
             try{
-                HttpURLConnection con = (HttpURLConnection)new URL(furl).openConnection();
+                HttpURLConnection con = (HttpURLConnection)Urls.create(furl, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS).openConnection();
                 BufferedInputStream in = new BufferedInputStream(con.getInputStream());
                 OutputStream out = dest.write(false, 4096);
 
