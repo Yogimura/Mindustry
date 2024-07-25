@@ -10,6 +10,7 @@ import arc.util.CommandHandler.*;
 import arc.util.Timer.*;
 import arc.util.serialization.*;
 import arc.util.serialization.JsonValue.*;
+import io.github.pixee.security.BoundedLineReader;
 import mindustry.core.GameState.*;
 import mindustry.core.*;
 import mindustry.game.EventType.*;
@@ -1186,7 +1187,7 @@ public class ServerControl implements ApplicationListener{
                         BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
                         socketOutput = new PrintWriter(client.getOutputStream(), true);
                         String line;
-                        while(client.isConnected() && (line = in.readLine()) != null){
+                        while(client.isConnected() && (line = BoundedLineReader.readLine(in, 5_000_000)) != null){
                             String result = line;
                             Core.app.post(() -> handleCommandString(result));
                         }
