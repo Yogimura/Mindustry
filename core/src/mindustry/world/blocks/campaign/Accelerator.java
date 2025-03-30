@@ -113,7 +113,8 @@ public class Accelerator extends Block{
             ui.showInfo("This block has been removed from the tech tree as of v7, and no longer has a use.\n\nWill it ever be used for anything? Who knows.");
 
             if(false)
-            ui.planet.showPlanetLaunch(state.rules.sector, sector -> {
+            {
+                ui.planet.showPlanetLaunch(state.rules.sector, sector -> {
                 //TODO cutscene, etc...
 
                 //TODO should consume resources based on destination schem
@@ -122,6 +123,7 @@ public class Accelerator extends Block{
                 universe.clearLoadoutInfo();
                 universe.updateLoadout(sector.planet.generator.defaultLoadout.findCore(), sector.planet.generator.defaultLoadout);
             });
+            }
 
             Events.fire(Trigger.acceleratorUse);
         }

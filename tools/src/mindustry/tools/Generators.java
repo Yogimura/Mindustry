@@ -494,7 +494,8 @@ public class Generators{
         //TODO !!!!! currently just an experiment
 
         if(false)
-        generate("all-icons", () -> {
+        {
+            generate("all-icons", () -> {
             for(Seq<Content> arr : content.getContentMap()){
                 for(Content cont : arr){
                     if(cont instanceof UnlockableContent && !(cont instanceof Planet)){
@@ -512,6 +513,7 @@ public class Generators{
                 }
             }
         });
+        }
 
         generate("unit-icons", () -> content.units().each(type -> {
             if(type.internal) return; //internal hidden units don't generate
