@@ -1853,7 +1853,8 @@ public class Blocks{
 
         //TODO implement
         if(false)
-        barrierProjector = new DirectionalForceProjector("barrier-projector"){{
+        {
+            barrierProjector = new DirectionalForceProjector("barrier-projector"){{
             requirements(Category.effect, with(Items.surgeAlloy, 100, Items.silicon, 125));
             size = 3;
             width = 50f;
@@ -1864,6 +1865,7 @@ public class Blocks{
 
             consumePower(4f);
         }};
+        }
 
         shockwaveTower = new ShockwaveTower("shockwave-tower"){{
             requirements(Category.effect, with(Items.surgeAlloy, 50, Items.silicon, 150, Items.oxide, 30, Items.tungsten, 100));
