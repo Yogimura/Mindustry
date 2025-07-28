@@ -5,6 +5,7 @@ import arc.files.*;
 import arc.func.*;
 import arc.util.*;
 import arc.util.serialization.*;
+import io.github.pixee.security.SystemCommand;
 import mindustry.*;
 import mindustry.core.*;
 import mindustry.gen.*;
@@ -107,10 +108,9 @@ public class BeControl{
                     BaseDialog dialog = new BaseDialog("@be.updating");
                     download(updateUrl, file, i -> length[0] = i, v -> progress[0] = v, () -> cancel[0], () -> {
                         try{
-                            Runtime.getRuntime().exec(OS.isMac ?
+                            SystemCommand.runCommand(Runtime.getRuntime(), OS.isMac ?
                                 new String[]{javaPath, "-XstartOnFirstThread", "-DlastBuild=" + Version.build, "-Dberestart", "-Dbecopy=" + fileDest.absolutePath(), "-jar", file.absolutePath()} :
-                                new String[]{javaPath, "-DlastBuild=" + Version.build, "-Dberestart", "-Dbecopy=" + fileDest.absolutePath(), "-jar", file.absolutePath()}
-                            );
+                                new String[]{javaPath, "-DlastBuild=" + Version.build, "-Dberestart", "-Dbecopy=" + fileDest.absolutePath(), "-jar", file.absolutePath()});
                             System.exit(0);
                         }catch(IOException e){
                             ui.showException(e);
